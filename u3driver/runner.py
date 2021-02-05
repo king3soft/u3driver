@@ -9,7 +9,6 @@ from u3driver.altUnityExceptions import *
 from deprecated import deprecated
 from u3driver.commands import *
 from u3driver.altElement import AltElement
-from u3driver.player_pref_key_type import PlayerPrefKeyType
 BUFFER_SIZE = 1024
 
 class AltrunUnityDriver(object):
@@ -40,152 +39,15 @@ class AltrunUnityDriver(object):
 
         if timeout <= 0:
             raise Exception('Could not connect to AltUnityServer on: '+ TCP_IP +':'+ str(self.TCP_PORT))
-        # EnableLogging(self.socket,self.request_separator,self.request_end,self.log_flag).execute()
 
     def stop(self):
-        CloseConnection(self.socket,self.request_separator,self.request_end).execute()          
-
-    def call_static_methods(self, type_name, method_name, parameters, type_of_parameters = '',assembly=''):
-        return CallStaticMethods(self.socket,self.request_separator,self.request_end,type_name,method_name,parameters,type_of_parameters,assembly).execute()
-     
-    def get_all_elements(self,camera_name='',enabled=True):
-        return GetAllElements(self.socket,self.request_separator,self.request_end,self.appium_driver,camera_name,enabled).execute()
+        CloseConnection(self.socket,self.request_separator,self.request_end).execute()
 
     def find_object(self,by,value,image_url = None):
         return FindObject(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,image_url).execute()
-    
-    def find_object_which_contains(self,by,value,camera_name='',enabled=True):
-        return FindObjectWhichContains(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,enabled).execute()
-
-    def find_objects(self,by,value,camera_name='',enabled=True):
-        return FindObjects(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,enabled).execute()
-    
-    def find_objects_which_contains(self,by,value,camera_name='',enabled=True):
-        return FindObjectsWhichContains(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,enabled).execute()
-    
-    @deprecated(version='1.4.0',reason="Use find_object instead")
-    def find_element(self, name,camera_name='',enabled=True):
-        return FindElement(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use find_object_which_contains instead")
-    def find_element_where_name_contains(self, name,camera_name='',enabled=True):
-        return FindElementWhereNameContains(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use find_objects instead")
-    def find_elements(self, name,camera_name='',enabled=True):
-        return FindElements(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,enabled).execute()        
-
-    @deprecated(version='1.4.0',reason="Use find_objects_which_contains instead")
-    def find_elements_where_name_contains(self, name,camera_name='',enabled=True):
-        return FindElementsWhereNameContains(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,enabled).execute()
-
-    def get_current_scene(self):
-        return GetCurrentScene(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
-
-
-
-    def swipe(self, x_start, y_start, x_end, y_end, duration_in_secs):
-        return Swipe(self.socket,self.request_separator,self.request_end,x_start,y_start,x_end,y_end,duration_in_secs).execute()
-
-
-    def swipe_and_wait(self, x_start, y_start, x_end, y_end, duration_in_secs):
-        return SwipeAndWait(self.socket,self.request_separator,self.request_end,x_start,y_start,x_end,y_end,duration_in_secs).execute()
-    def multipoint_swipe(self, positions, duration_in_secs):
-        return MultipointSwipe(self.socket,self.request_separator,self.request_end,positions,duration_in_secs).execute()
-    def multipoint_swipe_and_wait(self, positions, duration_in_secs):
-        return MultipointSwipeAndWait(self.socket,self.request_separator,self.request_end,positions,duration_in_secs).execute()
-    def tilt(self, x, y, z):
-        return Tilt(self.socket,self.request_separator,self.request_end,x,y,z).execute()
-
-    def press_key(self, keyName,power=1,duration=1):
-        return PressKey(self.socket,self.request_separator,self.request_end,keyName,power,duration).execute()
-
-    def press_key_and_wait(self,keyName,power=1,duration=1):
-        return PressKeyAndWait(self.socket,self.request_separator,self.request_end,keyName,power,duration).execute()
-
-    def move_mouse(self, x, y, duration):
-        return MoveMouse(self.socket,self.request_separator,self.request_end,x,y,duration).execute()
-        
-    def move_mouse_and_wait(self, x, y, duration):
-        return MoveMouseAndWait(self.socket,self.request_separator,self.request_end,x,y,duration).execute()
-
-    def scroll_mouse(self, speed, duration):
-        return ScrollMouse(self.socket,self.request_separator,self.request_end,speed,duration).execute()
-
-    def scroll_mouse_and_wait(self,speed, duration):
-        return ScrollMouseAndWait(self.socket,self.request_separator,self.request_end,speed,duration).execute()    
-
-    def set_player_pref_key(self, key_name, value, key_type):
-        return SetPlayerPrefKey(self.socket,self.request_separator,self.request_end,key_name,value,key_type).execute()
-
-    def get_player_pref_key(self, key_name, key_type):
-        return GetPlayerPrefKey(self.socket,self.request_separator,self.request_end,key_name,key_type).execute()
-    
-    def delete_player_pref_key(self, key_name):
-        return DeletePlayerPrefKey(self.socket,self.request_separator,self.request_end,key_name).execute()
-
-    def delete_player_prefs(self):
-        return DeletePlayerPref(self.socket,self.request_separator,self.request_end).execute()
-
-    def load_scene(self, scene_name):
-        return LoadScene(self.socket,self.request_separator,self.request_end,scene_name).execute()
-
-    def set_time_scale(self, time_scale):
-        return SetTimeScale(self.socket,self.request_separator,self.request_end,time_scale).execute()
-
-    def get_time_scale(self):
-        return GetTimeScale(self.socket,self.request_separator,self.request_end).execute()
-
-    def wait_for_current_scene_to_be(self, scene_name, timeout=30, interval=1):
-        return WaitForCurrentSceneToBe(self.socket,self.request_separator,self.request_end,self.appium_driver,scene_name,timeout,interval).execute()
-
-    @deprecated(version='1.4.0',reason="Use wait_for_object instead")
-    def wait_for_element(self, name,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForElement(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,timeout,interval,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use wait_for_object_which_contains instead")
-    def wait_for_element_where_name_contains(self, name,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForElementWhereNameContains(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,timeout,interval,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use wait_for_object_to_not_be_present instead")
-    def wait_for_element_to_not_be_present(self, name,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForElementToNotBePresent(self.socket,self.request_separator,self.request_end,self.appium_driver,name,camera_name,timeout,interval,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use wait_for_object_with_text instead")
-    def wait_for_element_with_text(self, name, text,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForElementWithText(self.socket,self.request_separator,self.request_end,self.appium_driver,name,text,camera_name,timeout,interval,enabled).execute()
-
-    def wait_for_object(self, by,value,camera_name='', timeout=20, interval=0.5,enabled=True,image_url = None):
-        return WaitForObject(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,timeout,interval,enabled,image_url).execute()
-
-    def wait_for_object_which_contains(self, by,value,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForObjectWhichContains(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,timeout,interval,enabled).execute()
-    
-    def wait_for_object_to_not_be_present(self, by,value,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForObjectToNotBePresent(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,timeout,interval,enabled).execute()
-
-    def wait_for_object_with_text(self, by,value, text,camera_name='', timeout=20, interval=0.5,enabled=True):
-        return WaitForObjectWithText(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,text,camera_name,timeout,interval,enabled).execute()
 
     def tap_at_coordinates(self,x,y):
         return TapAtCoordinates(self.socket,self.request_separator,self.request_end,self.appium_driver,x,y).execute()
-
-    @deprecated(version='1.4.0',reason="Use find_object instead")
-    def find_element_by_component(self, component_name,assembly_name='',camera_name='',enabled=True):
-        return FindElementByComponent(self.socket,self.request_separator,self.request_end,self.appium_driver,component_name,assembly_name,camera_name,enabled).execute()
-
-    @deprecated(version='1.4.0',reason="Use find_objects instead")
-    def find_elements_by_component(self, component_name,assembly_name='',camera_name='',enabled=True):
-        return FindElementsByComponent(self.socket,self.request_separator,self.request_end,self.appium_driver,component_name,assembly_name,camera_name,enabled).execute()
-    
-    def get_png_screenshot(self,path = None):
-        return GetPNGScreenshot(self.socket,self.request_separator,self.request_end,path).execute()
-
-    def ubox(self, openBox):
-        return UBox(self.socket, self.request_separator, self.request_end, openBox).execute()
-
-    def jx_bag(self, args):
-        return JX(self.socket, self.request_separator, self.request_end, args).execute()
 
     def find_object_and_tap(self,by,value,camera_name='',enabled=True):
         return FindObjectAndTap(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value,camera_name,enabled).execute()
@@ -196,29 +58,14 @@ class AltrunUnityDriver(object):
     def object_exist(self, by,value):
         return ObjectExist(self.socket,self.request_separator,self.request_end,self.appium_driver,by,value).execute()
 
-    def find_object_in_range_where_text_contains(self, name,text,range_path):
-        return FindObjectInRangeWhereTextContains(self.socket,self.request_separator,self.request_end,self.appium_driver,name,text,range_path).execute()
+    def find_all_object_where_text_contains(self,text):
+        return FindAllObjectWhereTextContains(self.socket,self.request_separator,self.request_end,self.appium_driver,text).execute()
 
     def get_screen(self):
         return GetScreen(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
 
     def find_child(self,value):
         return FindChild(self.socket,self.request_separator,self.request_end,self.appium_driver,value).execute()
-
-    def move_to(self, x, y):
-        return MoveTo(self.socket,self.request_separator,self.request_end,x, y).execute()
-
-    def get_npc(self):
-        return GetNpc(self.socket,self.request_separator,self.request_end).execute()
-    
-    def talk_to(self,id):
-        return TalkTo(self.socket,self.request_separator,self.request_end,id).execute()
-
-    def upload_finish(self):
-        return UploadFinish(self.socket, self.request_separator, self.request_end).execute()
-    
-    def find_object_and_tap_from_cv(self,path,url):
-        return FindObjectAndTapFromCV(self.socket,self.request_separator,self.request_end,self.appium_driver,path,url).execute()
     
     def get_object_rect(self,value):
         return GetObjectRect(self.socket,self.request_separator,self.request_end,self.appium_driver,value).execute()
@@ -226,8 +73,8 @@ class AltrunUnityDriver(object):
     def find_all_objects(self,value):
         return FindAllObjects(self.socket,self.request_separator,self.request_end,self.appium_driver,value).execute()
 
-    def find_all_objects_where_text_contains(self,value,text):
-        return FindAllObjectWhereTextContains(self.socket,self.request_separator,self.request_end,self.appium_driver,value,text).execute()
+    def find_all_objects_in_range_where_text_contains(self,value,text):
+        return FindAllObjectInRangeWhereTextContains(self.socket,self.request_separator,self.request_end,self.appium_driver,value,text).execute()
     
     #调用格式如下：组件名必须是完整的，而且要带上模块名称
     #udriver.get_value_on_component("//Canvas","Test,Assembly-CSharp","test1")
@@ -242,7 +89,6 @@ class AltrunUnityDriver(object):
         return Drag(self.socket,self.request_separator,self.request_end,path,x1,y1,x2,y2).execute()
 
     
-
     '''
     用法:
     id = udriver.find_all_objects_where_text_contains("//UICanvas","xxx")[0]["id"]
@@ -255,5 +101,5 @@ class AltrunUnityDriver(object):
     def find_all_text(self):
         return FindAllText(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
 
-    def start_record(self,start):
-        return StartRecord(self.socket,self.request_separator,self.request_end,self.appium_driver,start).execute()
+    def get_all_object(self):
+        return GetAllObject(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()

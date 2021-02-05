@@ -27,7 +27,6 @@ class BaseCommand(object):
             #     raise Exception('time out!!!')
             previousPart = str(part)
         try:
-            # print(data)
             data = data.split('altstart::')[1].split('::altend')[0]
             splitted_string = data.split('::altLog::')
             self.write_to_log_file(splitted_string[1])
@@ -44,8 +43,6 @@ class BaseCommand(object):
         return data
 
     def write_to_log_file(self, message):
-        if message == None:
-            message = ""
         with open("AltUnityTesterLog.txt", "a",encoding="utf-8") as f:
             f.write(message+"\n")
 

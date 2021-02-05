@@ -4,4 +4,3 @@ from u3driver.by import By
 from u3driver.runner import *
 from u3driver.player_pref_key_type import *
 # from altunityrunner.alt_unity_port_forwarding import AltUnityAndroidPortForwarding, AltUnityiOSPortForwarding
-__version__ = "1.0.0"
