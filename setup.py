@@ -8,7 +8,7 @@ with open(os.path.join("u3driver", "__init__.py"), encoding="utf8") as f:
 setup(
     name='u3driver',
     version=version,
-    python_requires='>=3.7',
+    python_requires='>=3.6',
     description='u3driver',
     url='https://github.com/king3soft/u3driver',
     author='king3soft',
