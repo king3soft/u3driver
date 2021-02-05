@@ -19,6 +19,7 @@ class AltrunUnityDriver(object):
         self.request_end=request_end
         self.log_flag=log_flag
         self.appium_driver=None
+        self.connect = False
         if (appium_driver != None):
             self.appium_driver = appium_driver
 
@@ -29,6 +30,7 @@ class AltrunUnityDriver(object):
                 self.socket.settimeout(300)
                 # print("Get server Version")
                 GetServerVersion(self.socket, self.request_separator, self.request_end).execute()
+                self.connect = True
                 break
             except Exception as e:
                 print(e)
