@@ -1,0 +1,8 @@
+{
+  "name": "u3driver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/king3soft/u3driver.git",
+  "author": "happyyi <immb@qq.com>",
+  "license": "MIT"
+}
