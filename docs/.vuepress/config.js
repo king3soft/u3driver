@@ -1,3 +1,2 @@
-module.exports = {
-    base : "u3driver/"
+module.exports = {    
 }
