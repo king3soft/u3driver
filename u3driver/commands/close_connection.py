@@ -9,4 +9,6 @@ class CloseConnection(BaseCommand):
         print('Sent close connection command...')
         time.sleep(1)
         self.socket.close()
+        self.connect = False
         print('Socket closed.')  
+        
