@@ -128,6 +128,11 @@ class AltrunUnityDriver(object):
         self.NeedPause()
         return FindAllText(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
 
-    def get_all_object(self):
+    def get_hierarchy(self):
         self.NeedPause()
-        return GetAllObject(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
+        return GetHierarchy(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
+
+        
+    def get_inspector(self, id):
+        self.NeedPause()
+        return GetInspector(self.socket,self.request_separator,self.request_end,self.appium_driver, id).execute()
