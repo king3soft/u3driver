@@ -103,5 +103,9 @@ class AltrunUnityDriver(object):
     def find_all_text(self):
         return FindAllText(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
 
-    def get_all_object(self):
-        return GetAllObject(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
+    def get_hierarchy(self):
+        return GetHierarchy(self.socket,self.request_separator,self.request_end,self.appium_driver).execute()
+
+        
+    def get_inspector(self, id):
+        return GetInspector(self.socket,self.request_separator,self.request_end,self.appium_driver, id).execute()
