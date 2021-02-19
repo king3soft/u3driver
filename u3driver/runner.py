@@ -52,7 +52,7 @@ class AltrunUnityDriver(object):
         self.pause = pause
 
     def stop(self):
-        
+        self.pause = False
         CloseConnection(self.socket,self.request_separator,self.request_end).execute()
 
     def find_object(self,by,value,image_url = None):
