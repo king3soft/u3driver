@@ -136,3 +136,6 @@ class AltrunUnityDriver(object):
     def get_inspector(self, id):
         self.NeedPause()
         return GetInspector(self.socket,self.request_separator,self.request_end,self.appium_driver, id).execute()
+
+    def get_server_version(self):
+        return GetServerVersion(self.socket, self.request_separator, self.request_end).execute()

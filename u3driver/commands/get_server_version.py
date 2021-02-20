@@ -19,4 +19,4 @@ class GetServerVersion(BaseCommand):
         #     super().write_to_log_file(message)
         #     return "Version mismatch"
         # else:
-        return "Ok"
+        return serverVersion
