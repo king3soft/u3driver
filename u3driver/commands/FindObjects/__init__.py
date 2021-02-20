@@ -11,4 +11,5 @@ from u3driver.commands.FindObjects.find_all_objects_where_text_contains import *
 from u3driver.commands.FindObjects.get_value_on_component import *
 from u3driver.commands.FindObjects.find_all_text import *
 from u3driver.commands.FindObjects.find_all_object_in_range_where_text_contains import *
-from u3driver.commands.FindObjects.get_all_object import *
+from u3driver.commands.FindObjects.get_hierarchy import *
+from u3driver.commands.FindObjects.get_inspector import *

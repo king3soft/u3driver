@@ -17,8 +17,10 @@ class FindObject(CommandReturningAltElements):
         print(self.value)
         path=self.set_path(self.by,self.value)
         if self.by == By.PATH:
-            data = self.send_data(self.create_command('findObject', path, self.needActive))
+            data = self.send_data(self.create_command('findObject', path, "path"))
         elif self.by == By.LEVEL:
             data = self.send_data(self.create_command('findObjectByLevel', path))
+        elif self.by == By.ID:
+            data = self.send_data(self.create_command('findObject', path, "id"))
 
         return self.get_alt_element(data)
