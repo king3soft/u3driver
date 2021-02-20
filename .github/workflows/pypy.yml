@@ -32,13 +32,18 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install setuptools wheel twine
-
+      
+      - name: pypi-publish
+        uses: pypa/gh-action-pypi-publish@v1.4.2
+        with:
+          user: __token__
+          password: ${{ secrets.TWINE_TOKEN }}
       # Build and upload to PyPI
-      - name: "Builds and uploads to PyPI"
-        env:
-            TWINE_USERNAME: __token__
-            TWINE_PASSWORD: ${{ secrets.TWINE_TOKEN }}
-        run: |
-          python3 setup.py bdist bdist_wheel
-          python3 -m twine upload dist/*
+      # - name: "Builds and uploads to PyPI"
+      #   env:
+      #       TWINE_USERNAME: __token__
+      #       TWINE_PASSWORD: ${{ secrets.TWINE_TOKEN }}
+      #   run: |
+      #     python3 setup.py bdist bdist_wheel
+      #     python3 -m twine upload dist/*
         
