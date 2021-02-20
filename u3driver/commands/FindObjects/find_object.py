@@ -1,7 +1,6 @@
-from u3driver.commands.command_returning_alt_elements import CommandReturningAltElements
 from u3driver.by import By
-import json
-import os
+from u3driver.commands.command_returning_alt_elements import CommandReturningAltElements
+
 
 class FindObject(CommandReturningAltElements):
     def __init__(self, socket,request_separator,request_end,appium_driver,by,value,image_url = None,needActive=True):

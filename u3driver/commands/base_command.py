@@ -1,8 +1,9 @@
+import time
+from datetime import datetime
+
 from u3driver.altUnityExceptions import *
 from u3driver.by import By
-from datetime import datetime
-import json
-import time
+
 BUFFER_SIZE = 1024
 
 

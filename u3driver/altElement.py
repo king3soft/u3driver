@@ -1,8 +1,10 @@
 import json
+
+from u3driver.commands.ObjectCommands.drag import Drag
 from u3driver.commands.ObjectCommands.get_text import GetText
 from u3driver.commands.ObjectCommands.set_text import SetText
 from u3driver.commands.ObjectCommands.tap import Tap
-from u3driver.commands.ObjectCommands.drag import Drag
+
 
 class AltElement(object):
     def __init__(self, alt_unity_driver, appium_driver, json_data):

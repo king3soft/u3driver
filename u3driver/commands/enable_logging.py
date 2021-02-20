@@ -1,5 +1,6 @@
 from u3driver.commands.base_command import BaseCommand
-import time
+
+
 class EnableLogging(BaseCommand):
 
     def __init__(self, socket,request_separator,request_end,log_flag):

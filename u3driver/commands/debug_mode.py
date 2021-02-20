@@ -1,6 +1,7 @@
-from u3driver.commands.base_command import BaseCommand
-import time
 import json
+
+from u3driver.commands.base_command import BaseCommand
+
 
 class DebugMode(BaseCommand):
 

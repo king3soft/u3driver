@@ -1,14 +1,8 @@
-import json
-import re
 import socket
-import subprocess
-import time
-import multiprocessing
 
-from u3driver.altUnityExceptions import *
-from deprecated import deprecated
-from u3driver.commands import *
 from u3driver.altElement import AltElement
+from u3driver.commands import *
+
 BUFFER_SIZE = 1024
 
 class AltrunUnityDriver(object):

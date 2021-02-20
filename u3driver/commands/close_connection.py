@@ -1,5 +1,8 @@
-from u3driver.commands.base_command import BaseCommand
 import time
+
+from u3driver.commands.base_command import BaseCommand
+
+
 class CloseConnection(BaseCommand):
     def __init__(self, socket,request_separator,request_end):
         super(CloseConnection, self).__init__(socket,request_separator,request_end)

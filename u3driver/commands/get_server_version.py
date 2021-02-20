@@ -1,6 +1,7 @@
-from u3driver.commands.base_command import BaseCommand
 import os
-from u3driver.__version__ import VERSION
+
+from u3driver.commands.base_command import BaseCommand
+
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 my_file = os.path.join(THIS_FOLDER, 'PythonServerVersion.txt')
 

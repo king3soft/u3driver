@@ -1,5 +1,7 @@
-from u3driver.commands.base_command import BaseCommand
 import json
+
+from u3driver.commands.base_command import BaseCommand
+
 
 class Drag(BaseCommand):
     def __init__(self, socket,request_separator,request_end,path,x1,y1,x2 = None,y2 = None):

@@ -1,6 +1,8 @@
+import json
+
 from u3driver.altElement import AltElement
 from u3driver.commands.base_command import BaseCommand
-import json
+
 BUFFER_SIZE = 1024
 class CommandReturningAltElements(BaseCommand):
     def __init__(self, socket,request_separator,request_end,appium_driver):
