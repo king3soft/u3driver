@@ -34,7 +34,7 @@ jobs:
           python3 -m pip install setuptools wheel twine
       
       
-      Build and upload to PyPI
+      # Build and upload to PyPI
       - name: "Builds and uploads to PyPI"
         env:
           TWINE_USERNAME: __token__
