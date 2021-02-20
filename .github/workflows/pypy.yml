@@ -37,7 +37,7 @@ jobs:
       - name: Publish distribution 📦 to PyPI          
         uses: pypa/gh-action-pypi-publish@master
         with:
-          password: ${{ secrets.TWINE_TOKEN }}      
+          password: 'pypi-AgEIcHlwaS5vcmcCJGZkMDk2ZmU1LTg2N2MtNDMzZi05YzcwLTZhMjdjNzdkMDJhNAACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYg9Y5KHj1g1nvmhQD8PQ26LgceB_WQRJUnBzbkVT-AoaE'
       # Build and upload to PyPI
       # - name: "Builds and uploads to PyPI"
       #   env:
