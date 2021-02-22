@@ -4,6 +4,9 @@ from u3driver.commands.ObjectCommands.drag import Drag
 from u3driver.commands.ObjectCommands.get_text import GetText
 from u3driver.commands.ObjectCommands.set_text import SetText
 from u3driver.commands.ObjectCommands.tap import Tap
+from u3driver.commands.ObjectCommands.find import Find
+from u3driver.commands.ObjectCommands.child_index import ChildIndex
+from u3driver.commands.ObjectCommands.parent import Parent
 
 
 class AltElement(object):
@@ -64,4 +67,19 @@ class AltElement(object):
     def tap(self):
         alt_object=self.toJSON()
         data= Tap(self.alt_unity_driver.socket,self.alt_unity_driver.request_separator,self.alt_unity_driver.request_end,alt_object).execute()
+        return AltElement(self.alt_unity_driver,self.appium_driver,data)
+        
+    def find(self, value):
+        alt_object=self.toJSON()
+        data = Find(self.alt_unity_driver.socket,self.alt_unity_driver.request_separator,self.alt_unity_driver.request_end,alt_object, value).execute()
+        return AltElement(self.alt_unity_driver,self.appium_driver,data)
+    
+    def child_index(self, value):
+        alt_object=self.toJSON()
+        data = ChildIndex(self.alt_unity_driver.socket,self.alt_unity_driver.request_separator,self.alt_unity_driver.request_end,alt_object, value).execute()
+        return AltElement(self.alt_unity_driver,self.appium_driver,data)
+
+    def parent(self):
+        alt_object=self.toJSON()
+        data = Parent(self.alt_unity_driver.socket,self.alt_unity_driver.request_separator,self.alt_unity_driver.request_end,alt_object).execute()
         return AltElement(self.alt_unity_driver,self.appium_driver,data)
