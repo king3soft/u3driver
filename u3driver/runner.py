@@ -196,3 +196,6 @@ class AltrunUnityDriver(object):
         rep = os.popen(f'curl -X POST -F "file=@{file_path}" http://10.11.164.89:8886/uploadfile').read()
         rep_dic = json.loads(rep)
         return 'http://10.11.164.89/' + rep_dic['filename:']
+
+    def interrupt(self):
+        raise "Interrupt"
