@@ -5,3 +5,4 @@ from u3driver.commands.close_connection import *
 from u3driver.commands.debug_mode import *
 from u3driver.commands.enable_logging import *
 from u3driver.commands.get_server_version import *
+from u3driver.commands.record_profile import *
