@@ -2,6 +2,9 @@ import socket
 
 from u3driver.altElement import AltElement
 from u3driver.commands import *
+import os
+import zipfile
+import json
 
 BUFFER_SIZE = 1024
 
@@ -133,3 +136,66 @@ class AltrunUnityDriver(object):
 
     def get_server_version(self):
         return GetServerVersion(self.socket, self.request_separator, self.request_end).execute()
+    
+    '''
+    record = 0 停止打点
+    record = 1 开始打点
+    '''
+    def record_profile(self,record):
+        RecordProfile(self.socket,self.request_separator,self.request_end,record).execute()
+    
+    '''
+    adb shell dumpsys window | findstr mCurrentFocus
+    获取当前正在活动的app
+    '''
+    def get_current_app_pagename(self):
+        res = os.popen(f"adb -s {self.appium_driver} shell dumpsys window | findstr mCurrentFocus").read()
+        return "com" + res.split("com")[1].split("/")[0]
+
+    '''
+    在app的file中获取全部性能数据
+    '''
+    def get_all_file_from_appfile(self,pagename = ''):
+        if pagename == '':
+            pagename = self.get_current_app_pagename()
+        res = os.popen(f"adb -s {self.appium_driver} shell ls /sdcard/Android/data/{pagename}/files").read()
+        res = res.split()
+        res_list = []
+        for i in res:
+            if "AutoTest" in i and ".raw" in i:
+                res_list.append(i)
+        return res_list
+
+    '''
+    由于无法获取每一个打点数据的名称，只能逐个遍历去找AutoTest开头的文件，然后上传
+    '''
+    def pull_profile_data(self,pagename = ''):
+        res_list = self.get_all_file_from_appfile()
+        if pagename == '':
+            pagename = self.get_current_app_pagename()
+        now_path = os.getcwd()
+        new_res_list = []
+        for i in res_list:
+            #下载到本地
+            res = os.popen(f"adb -s {self.appium_driver} pull /sdcard/Android/data/{pagename}/files/{i} {now_path}").read()
+            new_res_list.append(now_path + "\\" +  i)
+            #删除手机上的数据
+            os.popen(f"adb -s {self.appium_driver} shell rm /sdcard/Android/data/{pagename}/files/{i}").read()
+        return new_res_list
+    
+    def files_to_zip(self,zip_name,fullname_list):
+        z = zipfile.ZipFile(zip_name,"w",zipfile.ZIP_DEFLATED)
+        for file in fullname_list:
+            #记得删除本地文件
+            z.write(file)
+            os.remove(file)
+        z.close()
+        return os.getcwd() + "\\" + zip_name
+
+    def upload_file_to_server(self,file_path):
+        rep = os.popen(f'curl -X POST -F "file=@{file_path}" http://10.11.164.89:8886/uploadfile').read()
+        rep_dic = json.loads(rep)
+        return 'http://10.11.164.89/' + rep_dic['filename:']
+
+    def interrupt(self):
+        raise "Interrupt"
